@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerContainer {
+  width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem;
+  padding: 2rem 4rem;
+  border-radius: 1.5rem;
+  background-color: var(--secondary-bg-color);
+}
+
+.logo {
+  font-size: 1.3rem;
+  color: var(--primary-txt-color);
+  text-decoration: none;
+}
+
+.navList {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navListItem a {
+  color: var(--primary-accent-color);
+  text-decoration: none;
+}
