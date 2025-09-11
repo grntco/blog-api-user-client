@@ -1,14 +1,11 @@
-// import './App.css'
-
-import Header from "./layout/Header/Header.jsx";
-import Footer from './layout/Footer/Footer.jsx'
+import Router from "./Router.jsx";
+import Layout from "./layout/Layout.jsx";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Footer />
-    </>
+    <Router>
+      <Layout />
+    </Router>
   );
 }
 

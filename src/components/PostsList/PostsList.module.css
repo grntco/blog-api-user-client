@@ -1,0 +1,48 @@
+/* .list {
+    list-style-type: none;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.yearTitle {
+    color: var(--secondary-txt-color);
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.listItem {
+    border-radius: 8px;
+}
+
+.listItem:hover {
+    background-color: var(--secondary-bg-color);
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 8px;
+    text-decoration: none;
+    flex-wrap: wrap;
+}
+
+.date {
+    composes: date from '../../layout/Page/Page.module.css';
+}
+
+.date::after {
+    content: none;
+}
+
+.title {
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.tag {
+    composes: tag from '../../layout/Page/Page.module.css';
+} */

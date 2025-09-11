@@ -4,15 +4,18 @@
   justify-content: center;
 }
 
-.headerContainer {
+.nav {
   width: 1000px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 2rem;
-  padding: 2rem 4rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
   border-radius: 1.5rem;
   background-color: var(--secondary-bg-color);
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
 }
 
 .logo {
@@ -24,10 +27,14 @@
 .navList {
   list-style-type: none;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.navListItem a {
-  color: var(--primary-accent-color);
+.navLink {
+  color: var(--secondary-txt-color);
   text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--primary-txt-color);
 }
