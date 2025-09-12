@@ -11,26 +11,32 @@ const Header = () => {
       path: "blog",
       text: "Blog",
     },
+    {
+      path: "sign-up",
+      text: "Sign Up",
+    },
   ];
 
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo}>
-          A Silly Blog
-        </a>
-        <ul className={styles.navList}>
-          {navLinks.map((link, index) => {
-            return (
-              <li key={index}>
-                <Link className={styles.navLink} to={link.path}>
-                  {link.text}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+    <header>
+      <div className="container">
+        <nav className={styles.nav}>
+          <a href="/" className={styles.logo}>
+            A Silly Blog
+          </a>
+          <ul className={styles.navList}>
+            {navLinks.map((link, index) => {
+              return (
+                <li key={index}>
+                  <Link className={styles.navLink} to={link.path}>
+                    {link.text}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

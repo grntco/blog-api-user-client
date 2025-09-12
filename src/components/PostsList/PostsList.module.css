@@ -1,48 +1,53 @@
-/* .list {
-    list-style-type: none;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    gap: 4px;
+.listContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.yearTitle {
-    color: var(--secondary-txt-color);
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--border-color);
+.postsList {
+  list-style-type: none;
+  margin: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.listItem {
-    border-radius: 8px;
+.post {
+  border-radius: 8px;
 }
 
-.listItem:hover {
-    background-color: var(--secondary-bg-color);
+.post:hover {
+  background-color: var(--secondary-bg-color);
+  box-shadow: var(--box-shadow);
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
 }
 
 .link {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    gap: 8px;
-    text-decoration: none;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 8px;
+  text-decoration: none;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: var(--secondary-txt-color);
 }
 
-.date {
-    composes: date from '../../layout/Page/Page.module.css';
-}
-
-.date::after {
-    content: none;
+.link:hover .title {
+  color: var(--primary-txt-color);
 }
 
 .title {
-    flex-grow: 1;
-    font-size: 1rem;
+  flex-grow: 1;
+  font-size: 1rem;
 }
 
-.tag {
-    composes: tag from '../../layout/Page/Page.module.css';
-} */
+.pagesList {
+  list-style-type: none;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}

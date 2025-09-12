@@ -15,18 +15,18 @@ const Router = () => {
       children: [
         {
           index: true,
-          element: <Home />
+          element: <Home />,
         },
         {
           path: "about",
           element: <About />,
         },
         {
-          path: "blog",
+          path: "blog/:page?",
           element: <Blog />,
         },
         {
-          path: "blog/:slug",
+          path: "blog/:postId/:postSlug",
           element: <Post />,
         },
       ],

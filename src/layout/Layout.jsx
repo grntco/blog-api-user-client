@@ -6,8 +6,10 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className="main-content">
-        <Outlet />
+      <main>
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </>
