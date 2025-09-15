@@ -5,6 +5,9 @@ import Error from "./pages/Error";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Post from "./pages/Post";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import { AuthProvider } from "./hooks/auth/AuthContext";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -29,11 +32,23 @@ const Router = () => {
           path: "blog/:postId/:postSlug",
           element: <Post />,
         },
+        {
+          path: "register",
+          element: <Register />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
       ],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default Router;

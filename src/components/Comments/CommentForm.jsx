@@ -18,7 +18,7 @@ const CommentForm = ({ postId }) => {
           content: comment,
         }
       );
-      console.log(newComment);
+
     } catch (err) {
       console.log(err);
     }

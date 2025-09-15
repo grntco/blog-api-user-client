@@ -23,7 +23,7 @@ const PostsList = () => {
   if (error) return "error";
 
   const posts = data.posts ?? [];
-  console.log(data);
+  // console.log(data);
   const currentPage = data.meta.currentPage;
   const totalPages = data.meta.totalPages;
   const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);

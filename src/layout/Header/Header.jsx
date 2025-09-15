@@ -1,7 +1,11 @@
+import useAuth from "../../hooks/auth/useAuth";
 import styles from "./Header.module.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Header = () => {
+  const { user, isLoggedIn, logout } = useAuth();
+  const navigate = useNavigate();
+
   const navLinks = [
     {
       path: "about",
@@ -11,11 +15,12 @@ const Header = () => {
       path: "blog",
       text: "Blog",
     },
-    {
-      path: "sign-up",
-      text: "Sign Up",
-    },
   ];
+
+  const handleLogout = () => {
+    logout();
+    navigate("/", { replace: true });
+  };
 
   return (
     <header>
@@ -34,6 +39,19 @@ const Header = () => {
                 </li>
               );
             })}
+            {isLoggedIn ? (
+              <li>
+                <button className={styles.navLink} onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li>
+                <Link className={styles.navLink} to={"login"}>
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

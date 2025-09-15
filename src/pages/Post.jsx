@@ -12,7 +12,7 @@ const Post = () => {
   if (loading) return "loading...";
   if (error) return "error";
 
-  console.log(data);
+  // console.log(data);
   const post = data;
 
   return (

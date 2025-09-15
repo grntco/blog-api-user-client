@@ -4,7 +4,7 @@ const useMutation = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const mutate = async (url, method, data, options = {}) => {
+  const mutate = async (url, data, options = {}) => {
     if (!url) {
       setLoading(false);
       return;
@@ -14,36 +14,32 @@ const useMutation = () => {
       setLoading(true);
       setError(null);
 
+      // change obv
+      const token = localStorage.getItem("token");
+
+      const headers = {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...options.headers,
+      };
+
       const response = await fetch(url, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-          ...options.headers,
-        },
+        method: options.method || "POST",
+        headers,
         body: JSON.stringify(data),
-        ...options,
       });
 
-      console.log(response);
+      const responseData = await response.json();
 
-      if (!response.ok) {
-        throw new Error(
-          `HTTP Error: ${response.status}: ${response.statusText}`
-        );
-      }
+      if (!response.ok) setError(responseData);
 
-      const result = await response.json();
-
-      console.log(result);
-
-      if (!result.success) {
-        throw new Error(data.message || "Failed to mutate data.");
-      }
-
-      return result.data;
+      return responseData;
     } catch (err) {
-      setError(err.message || "Error: Something unexpected happened.");
-      console.log(error);
+      setError({
+        message: err.message || "An unexpected error occurred.",
+      });
+
+      console.error(error);
     } finally {
       setLoading(false);
     }
