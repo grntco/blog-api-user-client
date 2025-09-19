@@ -36,9 +36,6 @@
 }
 
 .inputItem input {
-}
-
-.inputItem input {
   outline: 1px solid var(--primary-bg-color);
   padding: 0.25rem;
   width: 100%;
@@ -56,18 +53,4 @@
 
 .btn {
   margin-top: 1rem;
-}
-
-.accountStatus {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: var(--secondary-txt-color);
-}
-
-.accountStatus a {
-  color: var(--secondary-txt-color);
-}
-
-.accountStatus a:hover {
-  color: var(--primary-txt-color);
 }

@@ -9,7 +9,7 @@ const CommentsList = ({ comments }) => {
       })}
     </ul>
   ) : (
-    <p className={styles.noComments}>No comments yet.</p>
+    <p className="info-text">No comments yet.</p>
   );
 };
 

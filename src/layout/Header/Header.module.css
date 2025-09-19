@@ -18,6 +18,11 @@
   text-decoration: none;
 }
 
+.logo:hover {
+  color: var(--primary-txt-color);
+  text-decoration: none;
+}
+
 .navList {
   list-style-type: none;
   display: flex;
@@ -25,10 +30,16 @@
 }
 
 .navLink {
+  border: none;
+  background: none;
+  font-family: var(--font-lexend);
+  font-size: 1.1rem;
   color: var(--secondary-txt-color);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navLink:hover {
   color: var(--primary-txt-color);
+  text-decoration: none;
 }

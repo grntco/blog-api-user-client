@@ -1,43 +1,71 @@
 import { useState } from "react";
 import useMutation from "../../hooks/api/useMutation.jsx";
 import styles from "./Comment.module.css";
+import useAuth from "../../hooks/auth/useAuth.jsx";
+import { Link } from "react-router";
 
-const CommentForm = ({ postId }) => {
-  const [comment, setComment] = useState("");
+const CommentForm = ({ postId, setComments }) => {
+  const [content, setContent] = useState("");
   const { mutate, loading, error } = useMutation();
+  const { user, isLoggedIn } = useAuth();
 
-  // TODO: Check if user is signed in, if not, display sign in option
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!content.trim()) return;
 
     try {
       const newComment = await mutate(
         `http://localhost:3000/posts/${postId}/comments`,
-        "post",
         {
-          content: comment,
+          content: content.trim(),
+        },
+        {
+          method: "POST",
         }
       );
 
-    } catch (err) {
-      console.log(err);
-    }
+      if (!error && newComment) {
+        setComments((prevComments) => [
+          ...prevComments,
+          {
+            content: content.trim(),
+            author: { firstName: user.firstName, lastName: user.lastName },
+            createdAt: new Date().toISOString(),
+          },
+        ]);
 
-    setComment("");
+        setContent("");
+      }
+    } catch (err) {
+      console.error("An error occurred while posting comment:", err);
+    }
   };
 
-  return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <textarea
-        onChange={(e) => setComment(e.target.value)}
-        rows={4}
-        className={styles.textarea}
-      ></textarea>
-      <button type="submit" className="btn">
-        {loading ? "Posting..." : "Post"}
-      </button>
-    </form>
-  );
+  {
+    if (user && isLoggedIn) {
+      return (
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows={4}
+            className={styles.textarea}
+            placeholder="Enter a comment..."
+          ></textarea>
+          <button type="submit" className="btn">
+            {loading ? "Posting..." : "Post"}
+          </button>
+        </form>
+      );
+    } else {
+      return (
+        <p className="info-text">
+          Please <Link to={"/login"}>login</Link> to post a comment.
+        </p>
+      );
+    }
+  }
 };
 
 export default CommentForm;

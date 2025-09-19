@@ -47,7 +47,7 @@ const AuthForm = ({
         <button type="submit" className={`btn ${styles.btn}`}>
           {loading ? btnLoadingText : btnText}
         </button>
-        <p className={styles.accountStatus}>
+        <p className="info-text">
           {type === "login" ? (
             <span>
               Not a member? <Link to={"/register"}>Create an account</Link>.
