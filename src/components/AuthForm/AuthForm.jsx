@@ -29,6 +29,7 @@ const AuthForm = ({
       <Alert
         alertMessage={error ? error.message : ""}
         alertType={error ? "error" : ""}
+        validationErrors={error ? error.errors : []}
       />
       <div className={styles.formContainer}>
         <h1>{title}</h1>

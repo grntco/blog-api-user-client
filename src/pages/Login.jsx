@@ -14,7 +14,6 @@ const Login = () => {
   });
   const { login } = useAuth();
   const navigate = useNavigate();
-  //   const navigate = useNavigate();
 
   useEffect(() => {
     if (error && error.formData) {
