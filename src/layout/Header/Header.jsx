@@ -19,16 +19,19 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/", { replace: true });
+    navigate("/", {
+      replace: true,
+      state: { message: "Successfully logged out.", type: "success" },
+    });
   };
 
   return (
     <header>
       <div className="container">
         <nav className={styles.nav}>
-          <a href="/" className={styles.logo}>
+          <Link to={"/"} className={styles.logo}>
             A Silly Blog
-          </a>
+          </Link>
           <ul className={styles.navList}>
             {navLinks.map((link, index) => {
               return (
@@ -39,7 +42,7 @@ const Header = () => {
                 </li>
               );
             })}
-            {isLoggedIn ? (
+            {user && isLoggedIn ? (
               <li>
                 <button className={styles.navLink} onClick={handleLogout}>
                   Logout

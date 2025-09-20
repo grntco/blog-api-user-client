@@ -16,7 +16,7 @@ const AuthForm = ({
   const btnLoadingText =
     type.toLowerCase() === "register" ? "Creating Account..." : "Logging in";
 
-  const validationErrors = error ? error.errors : [];
+  const validationErrors = error?.errors ?? [];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,13 +62,13 @@ const AuthForm = ({
             {loading ? btnLoadingText : btnText}
           </button>
           <p className="info-text">
-            {type === "login" ? (
+            {type === "register" ? (
               <span>
-                Not a member? <Link to={"/register"}>Create an account</Link>.
+                Already a member? <Link to={"/login"}>Login</Link>.
               </span>
             ) : (
               <span>
-                Already a member? <Link to={"/login"}>Login</Link>.
+                Not a member? <Link to={"/register"}>Create an account</Link>.
               </span>
             )}
           </p>

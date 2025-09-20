@@ -4,6 +4,7 @@ import PostContent from "../components/PostContent/PostContent";
 import CommentsList from "../components/Comments/CommentsList";
 import CommentForm from "../components/Comments/CommentForm";
 import { useEffect, useState } from "react";
+import Error from "./Error";
 
 const Post = () => {
   const [comments, setComments] = useState([]);
@@ -14,14 +15,15 @@ const Post = () => {
   const post = data;
 
   useEffect(() => {
-    // Only set comments if post data exists and has comments
     if (post?.comments) {
       setComments(post.comments);
     }
   }, [post?.comments]);
 
   if (loading) return "loading...";
-  if (error) return "error";
+  if (error) return "Unable to retrieve post.";
+
+  if (error) return <Error message={error?.message} />;
 
   return (
     <>

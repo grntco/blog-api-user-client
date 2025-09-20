@@ -14,9 +14,7 @@ const useMutation = () => {
       setLoading(true);
       setError(null);
 
-      // change obv
       const token = localStorage.getItem("token");
-
       const headers = {
         "Content-Type": "application/json",
         ...(token && { Authorization: `Bearer ${token}` }),

@@ -23,9 +23,8 @@ const PostsList = () => {
   if (error) return "error";
 
   const posts = data.posts ?? [];
-  // console.log(data);
-  const currentPage = data.meta.currentPage;
-  const totalPages = data.meta.totalPages;
+  const currentPage = data.meta?.currentPage;
+  const totalPages = data.meta?.totalPages;
   const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
@@ -39,7 +38,12 @@ const PostsList = () => {
         {pageNums.map((num, index) => {
           return (
             <li key={index}>
-              <Link to={`/blog/${num}`}>{num}</Link>
+              <Link
+                to={`/blog/${num}`}
+                className={num === currentPage ? styles.active : ""}
+              >
+                {num}
+              </Link>
             </li>
           );
         })}

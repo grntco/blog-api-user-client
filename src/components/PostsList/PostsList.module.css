@@ -50,3 +50,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.pagesList a {
+  color: var(--secondary-txt-color);
+}
+
+.pagesList a:hover,
+.pagesList a.active {
+  color: var(--primary-txt-color);
+}
