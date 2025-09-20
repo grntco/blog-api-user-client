@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
       } catch (err) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        console.error("Error", err.message);
       }
     }
 
