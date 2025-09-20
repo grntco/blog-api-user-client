@@ -1,5 +1,7 @@
 import formatDate from "../../utils/formatDate";
 import styles from "./PostContent.module.css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const PostContent = ({ post }) => {
   return (
@@ -11,7 +13,9 @@ const PostContent = ({ post }) => {
           By {post.author.firstName + " " + post.author.lastName}
         </div>
       </div>
-      <div className={styles.content}>{post.content}</div>
+      <div className={styles.content}>
+        <ReactMarkdown children={post.content} remarkPlugins={remarkGfm} />
+      </div>
     </article>
   );
 };
