@@ -50,9 +50,6 @@ const Login = () => {
         }
       );
 
-      console.log("Login result:", result);
-      console.log("Current error state:", error);
-
       setFormData({
         email: error?.formData.email ?? "",
         password: "",

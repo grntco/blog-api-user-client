@@ -65,8 +65,6 @@ const Register = () => {
         password: "",
       });
 
-      console.log(result);
-
       if (result && result.success) {
         navigate("/login", {
           replace: true,

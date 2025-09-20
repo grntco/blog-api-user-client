@@ -16,6 +16,8 @@ const AuthForm = ({
   const btnLoadingText =
     type.toLowerCase() === "register" ? "Creating Account..." : "Logging in";
 
+  const validationErrors = error ? error.errors : [];
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -29,8 +31,13 @@ const AuthForm = ({
       <Alert
         alertMessage={error ? error.message : ""}
         alertType={error ? "error" : ""}
-        validationErrors={error ? error.errors : []}
       />
+      {validationErrors.length > 0 &&
+        validationErrors.map((error, index) => {
+          return (
+            <Alert key={index} alertMessage={error.msg} alertType={"error"} />
+          );
+        })}
       <div className={styles.formContainer}>
         <h1>{title}</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
