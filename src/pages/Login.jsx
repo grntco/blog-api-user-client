@@ -51,19 +51,29 @@ const Login = () => {
         }
       );
 
-      console.log(result);
+      console.log("Login result:", result);
+      console.log("Current error state:", error);
 
       setFormData({
         email: error?.formData.email ?? "",
         password: "",
       });
 
-      if (!error) {
+      // switched from !error
+      if (result && result.success && result.token) {
         login(result.token, result.user);
-        navigate("/", { replace: true });
+        navigate("/", {
+          replace: true,
+          state: { message: result.message, type: "success" },
+        });
       }
     } catch (err) {
       console.error("A login error occurred:", err);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        password: "",
+      }));
     }
   };
 

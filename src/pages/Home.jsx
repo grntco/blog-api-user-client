@@ -1,8 +1,10 @@
 import { Link } from "react-router";
+import Alert from "../components/Alert/Alert";
 
 const Home = () => {
   return (
     <section>
+      <Alert />
       <div className="content">
         <h1>Welcome to the blog!</h1>
         <p>

@@ -50,9 +50,13 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await mutate("http://localhost:3000/auth/register", formData, {
-        method: "POST",
-      });
+      const result = await mutate(
+        "http://localhost:3000/auth/register",
+        formData,
+        {
+          method: "POST",
+        }
+      );
 
       setFormData({
         firstName: error?.formData.firstName ?? "",
@@ -61,7 +65,14 @@ const Register = () => {
         password: "",
       });
 
-      if (!error) throw navigate("/login", { replace: true });
+      console.log(result);
+
+      if (result && result.success) {
+        navigate("/login", {
+          replace: true,
+          state: { message: result.message, type: "success" },
+        });
+      }
     } catch (err) {
       console.error("A registration error occurred:", err);
     }
