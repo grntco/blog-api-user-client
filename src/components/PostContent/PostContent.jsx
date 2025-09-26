@@ -13,7 +13,7 @@ const PostContent = ({ post }) => {
           By {post.author.firstName + " " + post.author.lastName}
         </div>
       </div>
-      <div className={styles.content}>
+      <div className="content">
         <ReactMarkdown children={post.content} remarkPlugins={remarkGfm} />
       </div>
     </article>

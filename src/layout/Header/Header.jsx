@@ -30,7 +30,7 @@ const Header = () => {
       <div className="container">
         <nav className={styles.nav}>
           <Link to={"/"} className={styles.logo}>
-            A Silly Blog
+            User Blog - Blog API
           </Link>
           <ul className={styles.navList}>
             {navLinks.map((link, index) => {

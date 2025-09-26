@@ -4,7 +4,7 @@ import PostContent from "../components/PostContent/PostContent";
 import CommentsList from "../components/Comments/CommentsList";
 import CommentForm from "../components/Comments/CommentForm";
 import { useEffect, useState } from "react";
-import Error from "./Error";
+import NotFound from "./NotFound";
 
 const Post = () => {
   const [comments, setComments] = useState([]);
@@ -21,9 +21,7 @@ const Post = () => {
   }, [post?.comments]);
 
   if (loading) return "loading...";
-  if (error) return "Unable to retrieve post.";
-
-  if (error) return <Error message={error?.message} />;
+  if (error) return <NotFound />;
 
   return (
     <>

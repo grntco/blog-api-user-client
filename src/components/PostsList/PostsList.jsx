@@ -2,6 +2,9 @@ import styles from "./PostsList.module.css";
 import { Link, useParams } from "react-router";
 import formatDate from "../../utils/formatDate";
 import useFetch from "../../hooks/api/useFetch";
+import { useState, useEffect } from "react";
+import PagesList from "../PagesList/PagesList";
+import NotFound from "../../pages/NotFound";
 
 const PostItem = ({ post }) => {
   return (
@@ -16,16 +19,27 @@ const PostItem = ({ post }) => {
 
 const PostsList = () => {
   const { page } = useParams();
-  const url = `http://localhost:3000/posts${page ? `?page=${page}` : ""}`;
+  const urlBase = `http://localhost:3000/posts/published${
+    page && page > 1 ? `?page=${page}` : ""
+  }`;
+  const [url, setUrl] = useState(urlBase);
   const { data, error, loading } = useFetch(url);
 
+  useEffect(() => {
+    if (!url.includes("search=")) {
+      setUrl(urlBase);
+    }
+  }, [page, urlBase]);
+
   if (loading) return "loading...";
-  if (error) return "error";
+  if (error) return <NotFound />;
 
   const posts = data.posts ?? [];
-  const currentPage = data.meta?.currentPage;
-  const totalPages = data.meta?.totalPages;
-  const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);
+  // const prevSearch = data.formData?.search;
+  const pageData = {
+    currentPage: data.meta?.currentPage,
+    totalPages: data.meta?.totalPages,
+  };
 
   return (
     <div className={styles.listContainer}>
@@ -34,20 +48,12 @@ const PostsList = () => {
           return <PostItem key={index} post={post} />;
         })}
       </ul>
-      <ul className={styles.pagesList}>
-        {pageNums.map((num, index) => {
-          return (
-            <li key={index}>
-              <Link
-                to={`/blog/${num}`}
-                className={num === currentPage ? styles.active : ""}
-              >
-                {num}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <PagesList
+        path={"blog"}
+        pageData={pageData}
+        urlBase={urlBase}
+        setUrl={setUrl}
+      />
     </div>
   );
 };
