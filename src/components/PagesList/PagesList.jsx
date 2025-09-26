@@ -1,3 +1,4 @@
+import getApiUrl from "../../utils/getApiUrl";
 import styles from "./PagesList.module.css";
 import { useNavigate } from "react-router";
 
@@ -7,10 +8,11 @@ const PagesList = ({ path, pageData, setUrl, urlBase }) => {
   const nums = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const navigate = useNavigate();
+  const API_BASE_URL = getApiUrl();
 
   const handleOnClick = (e, pageNum) => {
     e.preventDefault();
-    const currentUrl = new URL(urlBase, "http://localhost:3000");
+    const currentUrl = new URL(urlBase, API_BASE_URL);
 
     if (pageNum === 1) {
       currentUrl.searchParams.delete("page");

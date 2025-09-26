@@ -5,11 +5,13 @@ import CommentsList from "../components/Comments/CommentsList";
 import CommentForm from "../components/Comments/CommentForm";
 import { useEffect, useState } from "react";
 import NotFound from "./NotFound";
+import getApiUrl from "../utils/getApiUrl";
 
 const Post = () => {
   const [comments, setComments] = useState([]);
   const { postId } = useParams();
-  const url = `http://localhost:3000/posts/${postId}`;
+  const API_BASE_URL = getApiUrl();
+  const url = `${API_BASE_URL}/posts/${postId}`;
   const { data, error, loading } = useFetch(url);
 
   const post = data;

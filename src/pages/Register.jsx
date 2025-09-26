@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AuthForm from "../components/AuthForm/AuthForm";
 import useMutation from "../hooks/api/useMutation";
 import { useNavigate } from "react-router";
+import getApiUrl from "../utils/getApiUrl";
 
 const Register = () => {
   const { mutate, loading, error } = useMutation();
@@ -12,6 +13,7 @@ const Register = () => {
     password: "",
   });
   const navigate = useNavigate();
+  const API_BASE_URL = getApiUrl();
 
   useEffect(() => {
     if (error && error.formData) {
@@ -50,13 +52,9 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const result = await mutate(
-        "http://localhost:3000/auth/register",
-        formData,
-        {
-          method: "POST",
-        }
-      );
+      const result = await mutate(`${API_BASE_URL}/auth/register`, formData, {
+        method: "POST",
+      });
 
       setFormData({
         firstName: error?.formData.firstName ?? "",

@@ -5,6 +5,7 @@ import useFetch from "../../hooks/api/useFetch";
 import { useState, useEffect } from "react";
 import PagesList from "../PagesList/PagesList";
 import NotFound from "../../pages/NotFound";
+import getApiUrl from "../../utils/getApiUrl";
 
 const PostItem = ({ post }) => {
   return (
@@ -19,7 +20,8 @@ const PostItem = ({ post }) => {
 
 const PostsList = () => {
   const { page } = useParams();
-  const urlBase = `http://localhost:3000/posts/published${
+  const API_BASE_URL = getApiUrl();
+  const urlBase = `${API_BASE_URL}/posts/published${
     page && page > 1 ? `?page=${page}` : ""
   }`;
   const [url, setUrl] = useState(urlBase);

@@ -3,11 +3,13 @@ import useMutation from "../../hooks/api/useMutation.jsx";
 import styles from "./Comment.module.css";
 import useAuth from "../../hooks/auth/useAuth.jsx";
 import { Link } from "react-router";
+import getApiUrl from "../../utils/getApiUrl.js";
 
 const CommentForm = ({ postId, setComments }) => {
   const [content, setContent] = useState("");
   const { mutate, loading, error } = useMutation();
   const { user, isLoggedIn } = useAuth();
+  const API_BASE_URL = getApiUrl();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ const CommentForm = ({ postId, setComments }) => {
 
     try {
       const newComment = await mutate(
-        `http://localhost:3000/posts/${postId}/comments`,
+        `${API_BASE_URL}/posts/${postId}/comments`,
         {
           content: content.trim(),
         },
