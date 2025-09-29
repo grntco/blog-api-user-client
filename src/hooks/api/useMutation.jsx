@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const useMutation = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const mutate = async (url, data, options = {}) => {
     if (!url) {
@@ -27,8 +29,18 @@ const useMutation = () => {
         body: JSON.stringify(data),
       });
 
-      const responseData = await response.json();
+      if (response.status === 429) {
+        const errorData = await response.json();
+        navigate("/", {
+          state: {
+            message: errorData.message || "Too many requests.",
+            type: "error",
+          },
+        });
+        return;
+      }
 
+      const responseData = await response.json();
       if (!response.ok) setError(responseData);
 
       return responseData;
